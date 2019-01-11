@@ -1,6 +1,12 @@
 const Task = require('../models').Task; //importar modelo sequelize 
 
 module.exports = {
+    index: function(req,res){
+        Task.findAll().then((tasks)=>{
+            res.json(tasks);
+        })
+
+    },
    create: function(req,res){
        Task.create({
            description: req.body.description
