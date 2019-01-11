@@ -3,7 +3,7 @@ const Task = require('../models').Task; //importar modelo sequelize
 module.exports = {
     index: function(req,res){
         Task.findAll().then((tasks)=>{
-            res.json(tasks);
+            res.render('tasks/index',{tasks: tasks}); //enviar vista index con metodo render
         })
 
     },
