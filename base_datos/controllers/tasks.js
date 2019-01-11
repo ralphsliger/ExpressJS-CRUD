@@ -1,3 +1,4 @@
+//controlador task
 const Task = require('../models').Task; //importar modelo sequelize 
 
 module.exports = {
@@ -6,6 +7,11 @@ module.exports = {
             res.render('tasks/index',{tasks: tasks}); //enviar vista index con metodo render
         })
 
+    },
+    show: function(req,res){
+        Task.findById(req.params.id).then(function(task){
+            res.render('tasks/show',{task})
+        })
     },
    create: function(req,res){
        Task.create({
@@ -16,6 +22,15 @@ module.exports = {
            console.log(err);
            res.json(err);
        })
+   },
+   update: function(req,res){
+        Task.update({description: req.body.description},{
+            where: {
+                id: req.params.id
+            }
+        }).then(function(response){
+            res.redirect('/tasks/'+req.params.id);
+        })
    },
    new: function(req,res){
        res.render('tasks/new');

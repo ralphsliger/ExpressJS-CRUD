@@ -7,5 +7,7 @@ router.route('/tasks').get(TasksController.index).post(TasksController.create);
 
 router.get('/tasks/new',TasksController.new); //Ruta formulario "vista new"
 
+router.route('/tasks/:id').get(TasksController.show).put(TasksController.update);  //wildcard
+
 
 module.exports= router; //exportar rutas 
