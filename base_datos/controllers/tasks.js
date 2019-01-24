@@ -18,6 +18,15 @@ module.exports = {
             res.render('tasks/edit',{task}) 
             })
     },
+    destroy: function(req,res){
+        Task.destroy({
+            where: {
+                id: req.params.id 
+             }
+            }).then(function(contadorElementosEliminados){
+                res.redirect('/tasks');
+            })
+    },
    create: function(req,res){
        Task.create({
            description: req.body.description
