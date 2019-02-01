@@ -10,6 +10,7 @@ module.exports = {
                 password: req.body.password
             };
            
+     
             User.create(data).then(result=>{
                 res.json(result);
             }).catch(err=>{
